@@ -1,0 +1,97 @@
+
+header {
+    width: 100%;
+    height: 6rem;
+}
+
+.img-logo-escrito {
+    width: 12.8rem;
+    height: 2rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+.h1-header-option {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 1.8rem;
+    float: right;
+    padding-top: 1.8rem;
+    padding-right: 2rem;
+    cursor: pointer;
+}
+
+.h1-header-option:hover {
+    color: #7037CD;
+}
+
+.img-cubesat-central {
+    width: 35rem;
+    height: 35rem;
+}
+
+.h1-body-title {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 2rem;
+    width: 100%;
+}
+
+.h2-body-desc {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
+.bottom-arrow-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-top: 3rem;
+    cursor: pointer;
+}
+
+.bottom-arrow-icon:active {
+    background-color: #7037CD;
+    background-size: 100%;
+    border-radius: 100%;
+}
+
+.div-icons-cubesat {
+    width: 100% !important;
+    height: 6rem;
+}
+
+.icon-cubesat-desc {
+    height: 5rem;
+    width: 5rem;
+    float: left;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.div-desc-cubesat {
+    width: 30rem;
+    padding-top: 2rem;
+    display: block;
+    margin: 0 auto 0 auto;
+}
+
+.h1-subsistem-title {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 2rem;
+    display: block;
+    margin: 0 auto 0 auto;
+}
+
+.p-subsistem-desc {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    text-align: justify;
+    display: block;
+    margin: 0 auto 0 auto;
+}
