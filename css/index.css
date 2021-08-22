@@ -4,6 +4,18 @@ header {
     height: 6rem;
 }
 
+.h1-header-alert {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+.h2-header-alert {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 0.8rem;
+}
+
 .img-logo-escrito {
     width: 12.8rem;
     height: 2rem;
@@ -23,6 +35,12 @@ header {
 
 .h1-header-option:hover {
     color: #7037CD;
+}
+
+.section-01 {
+    background: rgb(18,18,18);
+    background-image: linear-gradient(to bottom, transparent 0%, #121212 30%), url('../public/img/space_wallpaper.png');
+    background-repeat: no-repeat;
 }
 
 .img-cubesat-central {
@@ -58,7 +76,7 @@ header {
 
 .div-icons-cubesat {
     width: 100% !important;
-    height: 6rem;
+    padding-bottom: 5rem;
 }
 
 .icon-cubesat-desc {
@@ -72,7 +90,6 @@ header {
 
 .div-desc-cubesat {
     width: 30rem;
-    padding-top: 2rem;
     display: block;
     margin: 0 auto 0 auto;
 }
@@ -83,6 +100,7 @@ header {
     font-size: 2rem;
     display: block;
     margin: 0 auto 0 auto;
+    padding-top: 1rem;
 }
 
 .p-subsistem-desc {
@@ -94,4 +112,46 @@ header {
     text-align: justify;
     display: block;
     margin: 0 auto 0 auto;
+}
+
+.div-body-desc {
+    width: 100%;
+}
+
+.img-body-desc {
+    width: 18rem;
+    height: 18rem;
+    float: left;
+}
+
+.p-body-desc {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 2rem;
+    text-align: justify;
+    padding-right: 2rem;
+    padding-left: 3rem;
+}
+
+.div-body-desc-links {
+    display: flexbox;
+    height: 6rem;
+    width: 100%;
+}
+
+.p-body-desc-link {
+    font-family: 'Space Mono', spacemono;
+    color: var(--white);
+    font-size: 1.5rem;
+    text-decoration: underline;
+    margin-left: 18rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    text-align: justify;
+}
+
+.img-sollarium-section-04 {
+    width: 23rem;
+    height: 23rem;
+    float: left;
 }

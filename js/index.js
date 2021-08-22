@@ -40,8 +40,11 @@ function sectionScroll(id) {
         console.log("entrou segundo if")
         $("html, body").animate({scrollTop: documentHeight * 2}, 500);
     }
-    else if (id === "buttonSecion03") {
+    else if (id === "buttonSection03") {
         $("html, body").animate({scrollTop: documentHeight * 3}, 500);
+    }
+    else if (id === "buttonSection04") {
+        $("html, body").animate({scrollTop: documentHeight * 4}, 500);
     }
 
 }
