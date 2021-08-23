@@ -8,7 +8,7 @@ $(document).ready(function() {
         $(".section").height(documentHeight);
     }
 
-    $(sectionHeight);
+    //$(sectionHeight);
 
     $(".icon-cubesat-desc").hover(function() {
 
@@ -31,14 +31,18 @@ $(document).ready(function() {
 
 function sectionScroll(id) {
 
+    var scrollHeight;
+
     if (id === "buttonSection01") {
-        console.log("entrou primeiro if")
-        console.log("id: "+$(".bottom-arrow-icon").attr("id"))
-        $("html, body").animate({scrollTop: documentHeight}, 500);
+        var section1 = document.getElementById("section01");
+        var scrollHeight01 = section1.offsetHeight;
+        $("html, body").animate({scrollTop: scrollHeight01 + scrollHeight01 * 0.1}, 500)
     }
     else if (id === "buttonSection02") {
-        console.log("entrou segundo if")
-        $("html, body").animate({scrollTop: documentHeight * 2}, 500);
+        var section1 = document.getElementById("section01");
+        var section2 = document.getElementById("section02");
+        scrollHeight = section1.offsetHeight + section2.offsetHeight;
+        $("html, body").animate({scrollTop: scrollHeight + scrollHeight * 0.1}, 500);
     }
     else if (id === "buttonSection03") {
         $("html, body").animate({scrollTop: documentHeight * 3}, 500);

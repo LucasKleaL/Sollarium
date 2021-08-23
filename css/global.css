@@ -75,3 +75,17 @@ body {
         font-size: 55%;
     }
 }
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.3;
+}
+     
+::-webkit-scrollbar-track {
+    background:var(--black-background);
+}
+     
+::-webkit-scrollbar-thumb {
+    background: var(--gray-line);
+    border-radius: 10px;
+}
