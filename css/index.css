@@ -39,7 +39,7 @@ header {
 
 .section-01 {
     background: rgb(18,18,18);
-    background-image: linear-gradient(to bottom, transparent 0%, #121212 30%), url('../public/img/space_wallpaper.png');
+    background-image: linear-gradient(to bottom, transparent 0%, #121212 100%), url('../public/img/space_wallpaper.png');
     background-repeat: no-repeat;
 }
 

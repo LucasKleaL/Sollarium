@@ -2,7 +2,7 @@ var documentHeight;
 
 $(document).ready(function() {
 
-    documentHeight = $(window).height();
+    documentHeight = window.screen.height;
 
     function sectionHeight() {
         $(".section").height(documentHeight);
