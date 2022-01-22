@@ -1,0 +1,11 @@
+
+.b-signup {
+    color: var(--material-blue);
+    cursor: pointer;
+    padding-left: 0.3rem;
+    text-decoration: none;
+}
+
+.b-signup:hover {
+    text-decoration: underline;
+}
