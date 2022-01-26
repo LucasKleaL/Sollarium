@@ -4,26 +4,47 @@ import { Link } from "react-router-dom";
 import Firebase from "./../Firebase";
 import crypto from "crypto";
 
-import { Button, Container, Typography, Modal, TextField, Box } from "@material-ui/core";
+import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, } from "@material-ui/core";
+import LogoutIcon from '@mui/icons-material/Logout';
+import AddIcon from '@mui/icons-material/Add';
 import { ThemeProvider } from "@material-ui/core/styles";
 
 import "./../styles/data.css";
 
 import LoginButtonTheme from "../themes/LoginButtonTheme";
+import WhiteButtonTheme from "../themes/WhiteButtonTheme";
 
 function Data() {
 
     var history = useHistory();
 
+    //login variables
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    //send new raw data variables
+    const [dataTitle, setDataTitle] = useState("");
+    const [dataDesc, setDataDesc] = useState("");
+    const [dataDate, setDataDate] = useState("");
+    const [dataTime, setDataTime] = useState("");
+    const [dataUser, setDataUser] = useState("");
+    const [rawData, setRawData] = useState([]);
+
+    //environment variables
     const [open, setOpen] = useState(false);
+    const [addOpen, setAddOpen] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);
     }
     const handleClose = () => {
         setOpen(false);
+    }
+    const handleAddOpen = () => {
+        setAddOpen(true);
+    }
+    const handleAddClose = () => {
+        setAddOpen(false);
     }
 
     useLayoutEffect(() => {
@@ -46,6 +67,7 @@ function Data() {
         Firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 let uid = user.uid;
+                setDataUser(uid);
                 Firebase.firestore().collection("users").doc(uid).get()
                     .then((snapshot) => {
                         //
@@ -67,6 +89,42 @@ function Data() {
         .catch((error) => {
             alert("Não foi possível realizar login.")
         })
+
+    }
+
+    function logout() {
+        Firebase.auth().signOut();
+    }
+
+    async function sendNewRawData() {
+
+        let dataDatetime = dataDate + " " + dataTime;
+
+        await Firebase.firestore().collection("rawdata")
+        .add({
+            data_title: dataTitle,
+            data_description: dataDesc,
+            data_datime: dataDatetime,
+            data_user: dataUser
+        })
+        .then((docRef) => {
+            setNewRawDataFile(docRef.id);
+        })
+
+    }
+
+    async function setNewRawDataFile(uid) {
+
+        let dataName = uid + ".csv";
+
+        await Firebase.storage().ref("rawdata").child(dataName).put(rawData)
+            .then((e) => {
+                alert("Data file uploaded with success!")
+            })
+            .catch((e) => {
+                console.log("Error on data file upload.")
+         })
+
     }
 
     const ModalBoxStyle = {
@@ -87,9 +145,41 @@ function Data() {
         textTransform: "capitalize"
     }
 
+    const FiltersSectionStyle = {
+        width: "100%",
+        height: "3rem",
+        marginTop: "1rem"
+    }
+
+    const DataContainerStyle = {
+        width: "100%",
+        height: "50rem",
+        marginTop: "5rem",
+        borderRadius: "10px",
+        border: "solid",
+        borderColor: "white"
+    }
+
+    const AddDataButtonStyle = {
+        width: "3rem",
+        height: "3rem",
+        borderRadius: "10px",
+        float: "right",
+        marginTop: "0.5rem"
+    }
+
+    const FormInputTitleStyle = {
+        color: "var(--material-blue)",
+        fontSize: "0.8rem",
+        float: "left",
+        marginLeft: "5rem",
+        marginTop: "1rem"
+    }
+
     return (
 
         <div style={{"height": "100%"}}>
+
             <Modal open={open} onClose={handleClose} style={{"marginTop": "10%"}}>
 
                 <Container align="center" maxwidth="lg" style={{"border": "none"}}>
@@ -118,6 +208,84 @@ function Data() {
                 </Container>
 
             </Modal>
+
+            <Modal open={addOpen} onClose={handleAddClose}>
+
+                <Container align="center" maxwidth="lg" style={{"marginTop": "10%"}}>
+
+                    <Box style={ModalBoxStyle}>
+
+                        <div>
+
+                            <TextField label="Data title" type="text" placeholder="The data numeration/title" style={ModalTextFieldStyle} onChange={ (e) => {setDataTitle(e.target.value)} } />
+                            <TextField label="Data description" type="text" placeholder="The data description" style={ModalTextFieldStyle} onChange={ (e) => {setDataDesc(e.target.value)} } />
+
+                            <div>
+                                <label style={FormInputTitleStyle}>Data acquisition date</label>
+                                <TextField type="date" style={{"width": "20rem"}} onChange={ (e) => {setDataDate(e.target.value)} } />
+                            </div>
+                            
+                            <div>
+                                <label style={FormInputTitleStyle}>Data acquisition time</label>
+                                <TextField type="time" style={{"width": "20rem"}} onChange={ (e) => {setDataTime(e.target.value)} } />
+                            </div>
+
+                            <div>
+                                <label style={{...FormInputTitleStyle,...{"width": "20rem", "textAlign": "left", "marginBottom": "0.5rem"}}} for="dataFileInput">Data file</label>
+                                <input type="file" id="dataFileInput" style={{"width": "20rem", "overflow": "auto"}} onChange={ (e) => {setRawData(e.target.files[0])} } />
+                            </div>
+
+                            <div style={{"paddingBottom": "1rem"}}>
+                                <ThemeProvider theme={LoginButtonTheme}>
+                                    <Button color="primary" variant="contained" style={LoginButtonStyle} onClick={sendNewRawData}>Enviar</Button>
+                                </ThemeProvider>
+                            </div>
+                            
+                        </div>
+
+                    </Box>
+
+                </Container>
+
+            </Modal>
+
+            <header>
+
+                <div style={{"float": "right", "marginTop": "1.5rem"}}>
+                    <LogoutIcon fontSize="large" style={{"color": "white", "marginRight": "2rem", "cursor": "pointer"}} onClick={logout} />
+                </div>  
+                
+            </header>
+
+            <div>
+
+                <Container align="center" maxwidth="lg" style={DataContainerStyle}>
+
+                    <div style={FiltersSectionStyle}>
+
+                        <RadioGroup defaultValue="rawData" style={{"color": "white", "overflow": "auto", "width": "15rem", "float": "left"}}>
+                            <FormControlLabel value="rawData" control={<Radio defaultChecked={true} style={{"color": "white"}}/>} label="Raw data" />
+                            <FormControlLabel value="processedData" control={<Radio defaultChecked={true} style={{"color": "white"}}/>} label="Processed data" />
+                        </RadioGroup>
+                        
+                        <div>
+                            <ThemeProvider theme={WhiteButtonTheme}>
+                                <Button color="primary" variant="outlined" style={AddDataButtonStyle} onClick={ () => {handleAddOpen()} } >
+                                    <AddIcon style={{"color": "var(--white)", "fontSize": "2rem"}} />
+                                </Button>
+                            </ThemeProvider>
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                    </div>
+
+                </Container>
+
+            </div>
+
         </div>
 
     )

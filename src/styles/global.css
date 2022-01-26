@@ -29,6 +29,11 @@ body {
     background-color: var(--black-background);
 }
 
+header {
+    width: 100%;
+    height: 3rem;
+}
+
 .div-container {
     align-items: center; 
     text-align: center;
