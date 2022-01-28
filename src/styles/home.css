@@ -1,0 +1,30 @@
+
+
+.sollarium-logo {
+    width: 12rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    float: left;
+}
+
+.header-wallpaper {
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(to bottom, transparent 0%, #121212 100%), url('../public/img/space_wallpaper.png');
+    background-repeat: no-repeat;
+}
+
+.cubesat-header-img {
+    margin-top: 10rem;
+    width: 50%;
+}
+
+.div-section-1 {
+    width: 100%;
+    height: 100vh;
+}
+
+.cubesat-system-icon {
+    width: 5rem;
+    cursor: pointer;
+}

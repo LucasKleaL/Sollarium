@@ -1,21 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+
 * {
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
     font-size: 1rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Roboto";
 }
 
 :root {
     --white:#FFFFFF;
+    --white-background: #F8F8F8;
+    --gray-border: #CDCDCD;
+    --gray-tag: #C4C4C4;
+    --gray-line: #DCDCDC;
+    --gray-dark-text: #3F3F3F;
     --black: #000000;
     --black-background: #121212;
-    --gray-line: #DCDCDC;
+    --green-up: #30B72D;
     --light-blue: #00D8FF;
+    --interaction-blue: #1a73e8;
+    --material-blue: #3f51b5;
+    --sollarium-blue: #303872;
+    --red-fire: #FF0000;
 }
 
 body {
-    background-color: #121212;
+    background-color: var(--black-background);
+}
+
+header {
+    width: 100%;
+    height: 3rem;
 }
 
 .div-container {
@@ -26,34 +42,10 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     width: 100% !important; 
+    height: 100%;
 }
 
-header {
-    width: 100%;
-    height: 6rem;
-}
-
-.img-logo-escrito {
-    width: 12.8rem;
-    height: 2rem;
-    margin-top: 2rem;
-    margin-left: 2rem;
-}
-
-.button-header {
-    font-family: 'Space Mono', spacemono;
-    color: var(--white);
-    font-size: 1.6rem;
-    float: right;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    cursor: pointer;
-    text-align: center;
-    background-color: transparent;
-    height: 3.8rem;
-    border: 0;
-    border-radius: 10px;
-}
+/* Global components */
 
 @media(max-width: 1080px) {
     html{
