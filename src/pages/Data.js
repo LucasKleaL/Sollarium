@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Firebase from "./../Firebase";
 import crypto from "crypto";
+import saveAs from "file-saver";
 
 import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, } from "@material-ui/core";
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -33,6 +34,8 @@ function Data() {
     //environment variables
     const [open, setOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
+    const [dataViewType, setDataViewType] = useState("rawData");
+    const [rawDataFirebase, setRawDataFirebase] = useState([]);
 
     const handleOpen = () => {
         setOpen(true);
@@ -69,8 +72,8 @@ function Data() {
                 let uid = user.uid;
                 setDataUser(uid);
                 Firebase.firestore().collection("users").doc(uid).get()
-                    .then((snapshot) => {
-                        //
+                    .then(() => {
+                        getRawData();
                     })
             }
             else {
@@ -78,6 +81,23 @@ function Data() {
             }
         });
     }, [open])
+
+    // recupera dados do banco de acordo com a opção marcada
+    useEffect(() => {
+        if (dataViewType === "rawData") {
+            getRawData();
+        }
+    }, [dataViewType])
+
+    async function getRawData() {
+        await Firebase.firestore().collection("rawdata").get()
+        .then((snapshot) => {
+            let snapshotArray = [];
+            snapshot.docs.map((doc) => snapshotArray.push([doc.data(), doc.id]));
+            setRawDataFirebase(snapshotArray);
+            console.log(snapshotArray);
+        })
+    }
 
     function login() {
 
@@ -104,7 +124,7 @@ function Data() {
         .add({
             data_title: dataTitle,
             data_description: dataDesc,
-            data_datime: dataDatetime,
+            data_datetime: dataDatetime,
             data_user: dataUser
         })
         .then((docRef) => {
@@ -125,6 +145,39 @@ function Data() {
                 console.log("Error on data file upload.")
          })
 
+    }
+
+    function redirectToDataViewer(uid) {
+        history.push({
+            pathname: "/dataviewer",
+            dataUid: uid
+        })
+    }
+
+    async function directFileDownload(uid) {
+        await Firebase.storage().ref("rawdata").child(uid).getDownloadURL()
+        .then((url) => {
+
+            saveAs(
+                url,
+                uid
+            )
+
+            /*console.log("start download")
+
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = (event) => {
+                const blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+            */
+
+        })
+        .catch((error) => {
+            alert("Error on file download. " + error)
+        })
     }
 
     const ModalBoxStyle = {
@@ -153,7 +206,7 @@ function Data() {
 
     const DataContainerStyle = {
         width: "100%",
-        height: "50rem",
+        overflow: "auto",
         marginTop: "5rem",
         borderRadius: "10px",
         border: "solid",
@@ -174,6 +227,38 @@ function Data() {
         float: "left",
         marginLeft: "5rem",
         marginTop: "1rem"
+    }
+
+    const DataCardStyle = {
+        backgroundColor: "var(--white-background)",
+        width: "18rem",
+        height: "20rem",
+        borderRadius: "10px",
+        marginLeft: "0.5rem",
+        marginTop: "0.5rem"
+    }
+
+    const DataCardTitleStyle = {
+        fontSize: "1.5rem",
+        fontWeigth: "bold",
+        textAlign: "left",
+        marginLeft: "0.3rem"
+    }
+    
+    const DataCardDescStyle = {
+        fontSize: "1rem",
+        fontWeigth: "initial",
+        textAlign: "left",
+        marginLeft: "0.3rem",
+        marginTop: "0.2rem"
+    }
+
+    const PreviewDataButtonStyle = {
+        width: "5rem",
+        height: "3rem",
+        marginTop: "1rem",
+        textTransform: "capitalize",
+        fontWeigth: "bold"
     }
 
     return (
@@ -263,9 +348,9 @@ function Data() {
 
                     <div style={FiltersSectionStyle}>
 
-                        <RadioGroup defaultValue="rawData" style={{"color": "white", "overflow": "auto", "width": "15rem", "float": "left"}}>
+                        <RadioGroup defaultValue="rawData" style={{"color": "white", "overflow": "auto", "width": "15rem", "float": "left"}} onChange={(e) => {setDataViewType(e.target.value)}} >
                             <FormControlLabel value="rawData" control={<Radio defaultChecked={true} style={{"color": "white"}}/>} label="Raw data" />
-                            <FormControlLabel value="processedData" control={<Radio defaultChecked={true} style={{"color": "white"}}/>} label="Processed data" />
+                            <FormControlLabel value="processedData" control={<Radio style={{"color": "white"}}/>} label="Processed data" />
                         </RadioGroup>
                         
                         <div>
@@ -278,7 +363,40 @@ function Data() {
 
                     </div>
 
-                    <div>
+                    <div style={{"paddingBottom": "3rem"}}>
+
+                        <Grid container spacing={2}>
+
+                            {
+                                rawDataFirebase.map(data => {
+
+                                    return (
+                                        <Grid item style={DataCardStyle}>
+
+                                            <div style={{"height": "70%"}}>
+                                                <Typography style={DataCardTitleStyle}>{data[0].data_title}</Typography>
+                                                <Typography style={DataCardDescStyle}>{data[0].data_description}</Typography>
+                                                <Typography style={DataCardDescStyle}>{data[0].data_datetime}</Typography>
+                                                <Typography style={DataCardDescStyle}><b>ID: </b>{data[1]}</Typography>
+                                                <Typography style={DataCardDescStyle}><b>File type: </b>.csv</Typography>
+                                            </div>
+                                            
+                                            <div>
+                                                <ThemeProvider theme={LoginButtonTheme}>
+                                                    <Button color="primary" variant="contained" style={PreviewDataButtonStyle} onClick={() => redirectToDataViewer(data[1])}>Preview</Button>
+                                                </ThemeProvider>
+                                                <Typography onClick={() => directFileDownload(data[1]+".csv")} style={{...DataCardDescStyle,... {"textDecoration": "underline", "textAlign": "center", "marginTop": "0.5rem", "cursor": "pointer"}}}>Direct Download</Typography>
+                                            </div>
+                                            
+                                        </Grid>
+                                    )
+
+                                })
+                            }
+
+                            
+
+                        </Grid>
 
                     </div>
 
@@ -289,6 +407,7 @@ function Data() {
         </div>
 
     )
+
 
 }
 
