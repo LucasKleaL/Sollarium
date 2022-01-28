@@ -24,3 +24,7 @@
     height: 100vh;
 }
 
+.cubesat-system-icon {
+    width: 5rem;
+    cursor: pointer;
+}
