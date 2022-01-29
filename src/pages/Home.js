@@ -8,6 +8,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 import { ArrowDownwardIcon } from '@mui/icons-material/ArrowDownward';
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 import AcelerometerIcon from "./../public/icons/acelerometer_icon.png";
 import Co2Icon from "./../public/icons/co2_icon.png";
@@ -51,7 +52,7 @@ function Home() {
         "O sensor de temperatura mede a temperatura ambiente ao redor do sensor. Este sensor é o mesmo que faz medições de umidade, um sensor DHT11.",
         "O sensor de umidade mede a quantidade de umidade no ar que está interagindo com o sensor. Este sensor é o mesmo que faz as medições de temperatura, um sensor DHT11.",
         "O magnetômetro é o sensor crucial para nossa missão principal. Com ele é possível fazer medições sobre a influência do campo magnético que está interagindo com o sensor.",
-        "O computador embarcado, é a unidade responsável porcontrolar todos os outros subsistemas do satélite.É com ele que gerenciamos as interações entre o software e hardware do sistema. Nosso computador de bordo é composto por um ESP32embutido em uma placa feita pela PION Labs.",
+        "O computador embarcado, é a unidade responsável porcontrolar todos os outros subsistemas do satélite. É com ele que gerenciamos as interações entre o software e hardware do sistema. Nosso computador de bordo é composto por um ESP32embutido em uma placa feita pela PION Labs.",
         "O subsistema de comunicação envolve o hardware e software responsável por transmitir as informações obtidas a partir dos sensores. Ainda não definimos o hardware a ser utilizado para nossa missão, mas provavelmente utilizaremos frequências de rádio UHF para as transmissões de dados e telemetria.",
         "O subsistema de energia é reponsável por gerenciar, gerar, e distribuir a energia para todos os demais subsistemas do satélite. No momento utilizamos uma bateria da PION que acompanha o cubesat e é carregada via USB. Para uma missão real pretendemos aumentar a capacidade energética e utilizar paineis fotovoltaicos para obtenção de energia.",
         "O sensor de luminosidade é essencial para a orientação do cubesat no espaço, com ele conseguimos obter a direção em que os raios solares estão atingindo o cubesat, podendo ser utilizado para guiar a captação de energia dos paineis solares. Além do mais, com ele é possível realizar experimentos envolvendo luz UV.",
@@ -111,6 +112,32 @@ function Home() {
         width: "50%",
         textAlign: "justify",
         marginTop: "0.2rem"
+    }
+
+    const FooterTextStyle = {
+        color: "var(--gray-tag)",
+        fontSize: "1.5rem",
+        fontWeight: "bold",
+        marginTop: "2rem",
+        marginLeft: "3rem"
+    }
+
+    const FooterLinkStyle = {
+        color: "var(--gray-tag)",
+        fontSize: "1rem",
+        fontWeight: "bold",
+        marginTop: "0.5rem",
+        marginLeft: "3rem",
+        textDecoration: "underline",
+        cursor: "pointer"
+    }
+
+    const FooterIcon = {
+        color: "var(--gray-tag)",
+        fontSize: "3rem",
+        marginLeft: "2.7rem",
+        marginTop: "0.2rem",
+        cursor: "pointer"
     }
 
     return (
@@ -184,6 +211,20 @@ function Home() {
                     </Container>
 
             </div>
+
+            <footer>
+
+                <div style={{"width": "20rem", "height": "80%", "marginTop": "1rem",}}>
+                    <Typography style={FooterTextStyle}>2021 Sollarium</Typography>
+                    <Typography style={FooterLinkStyle} onClick={() => window.location = "mailto:sollarium.org@gmail.com"}>sollarium.org@gmail.com</Typography>
+                </div>
+
+                <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
+                    <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Acompanhe nossa rede social</Typography>
+                    <InstagramIcon style={FooterIcon} onClick={() => window.location.href = "https://www.instagram.com/sollarium.cubesat/"} target="_blank" />
+                </div>
+
+            </footer>
 
         </div>
 
