@@ -37,7 +37,15 @@ function DataViewer() {
     }
 
     async function parseCsvToJson(url) {
-        let file = await fetch(url).then(e => e.blob());
+
+        let file = await fetch(url, {
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "text/csv",
+                "Origin": "https://sollarium.vercel.app/"
+            }
+        }).then(e => e.blob());
         
             Papa.parse(file, {
                 complete: results => (setData(results.data))
@@ -47,7 +55,7 @@ function DataViewer() {
 
     return (
         <div style={{marginTop: "1rem", marginRight: "2rem", marginLeft: "2rem"}}>
-            <Container align="center">
+            <Container maxwidth="lg" align="center">
                 <DataTable data={data} />
             </Container>
         </div>
