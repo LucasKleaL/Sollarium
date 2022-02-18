@@ -1,70 +1,59 @@
-import { React, useState, useEffect, useLayoutEffect } from "react";
+import { React, useState, useEffect, useLayoutEffect, componentDidMount } from "react";
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Firebase from "../Firebase";
-import CSVReader from "react-csv-reader";
-import csv from "csvtojson";
+import saveAs from "file-saver";
+
+import Papa from "papaparse";
+import { useTable } from "react-table";
 
 import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, } from "@material-ui/core";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { render } from "react-dom";
+
+import DataTable from "./../components/DataTable";
 
 function DataViewer() {
 
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
+    const [dataUrl, setDataUrl] = useState();
     const { dataUid } = useLocation();
     const uid = dataUid + ".csv";
 
     useEffect(() => {
-        getDataFromFirebase();
-        
+        //
     }, [])
 
-    useEffect(() => {
-
-        //
-
-    }, [data])
-
-    const parseCSV = () => {
-
-        const result = {
-            header: [],
-            content: [],
-        }
-
-        const [header, ...aux] = data.split('\n');
-
-        result.header = header.split(';');
-
-        aux.forEach((item) => {
-            result.data.push(item.split(';'));
-        })
-
-        console.log(result)
-
-    }
+    useLayoutEffect(() => {
+        getDataFromFirebase();
+    }, [])
 
     async function getDataFromFirebase() {
         await Firebase.storage().ref("rawdata").child(uid).getDownloadURL()
         .then((url) => {
-            setData(url[0]);
-            console.log(url[0])
+            setDataUrl(url);
+            parseCsvToJson(url);
         });
     }
 
-    csv()
-    .fromFile(data)
-    .then((jsonObj) => {
-        console.log(jsonObj)
-    })
+    async function parseCsvToJson(url) {
+        let file = await fetch(url).then(e => e.blob());
+        
+            Papa.parse(file, {
+                complete: results => (setData(results.data))
+            })
+        
+    }
 
     return (
-
-        <div>
-            <CSVReader onFileLoaded={(data)}/>
+        <div style={{marginTop: "1rem", marginRight: "2rem", marginLeft: "2rem"}}>
+            <Container align="center">
+                <DataTable data={data} />
+            </Container>
         </div>
-
     )
+
+
 
 }
 
