@@ -2,6 +2,7 @@
   "name": "sollarium",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://firebasestorage.googleapis.com/v0/b/cubesat-sollarium.appspot.com/",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/style": "^0.8.0",

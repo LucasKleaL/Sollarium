@@ -39,10 +39,7 @@ function DataViewer() {
     async function parseCsvToJson(url) {
 
         let file = await fetch(url, {
-            mode: "cors",
-            credentials: "include",
             headers: {
-                "Content-Type": "text/csv",
                 "Origin": "https://sollarium.vercel.app/"
             }
         }).then(e => e.blob());
