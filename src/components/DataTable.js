@@ -1,5 +1,19 @@
-import { React, Component, Container, useState, useEffect, useLayoutEffect, componentDidMount } from "react";
+import { React, Component } from "react";
+import { Link } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
+import { withStyles } from "@material-ui/styles";
+import PropTypes from 'prop-types';
+
+import { Button, Container, Typography, Modal } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core/styles";
+
+import LoginButtonTheme from "../themes/LoginButtonTheme";
+
+const styles = theme => ({
+    root: {
+        background: "var(--white-background)",
+    }
+});
 
 class DataTable extends Component {
 
@@ -7,42 +21,78 @@ class DataTable extends Component {
         super(props);
     }
 
+
+
     render() {
 
         const data = this.props.data;
-        console.log("data length: "+data.length)
-        console.log(data);
+        const dataUid = this.props.dataUid;
+        const dataInfos = this.props.dataInfos;
+        const { classes } = this.props;
 
         let content;
 
+        const DataTitleStyle = {
+            fontSize: "2rem",
+            color: "var(--white)",
+            textAlign: "left",
+            fontWeight: "900"
+        }
+
+        const DataIdStyle = {
+            fontSize: "1.2rem",
+            color: "var(--white)",
+            textAlign: "left",
+        }
+
+        const DataDescStyle = {
+            fontSize: "1rem",
+            color: "var(--white)",
+            textAlign: "left"
+        }
+
+        const ChartsButtonStyle = {
+            width: "8rem",
+            height: "3rem",
+            textTransform: "capitalize",
+            fontWeigth: "bold",
+            float: "left"
+        }
+
+        const ChartsDescStyle = {
+            fontSize: "0.8rem",
+            color: "var(--white)",
+            float: "right",
+            textAlign: "left",
+            marginTop: "0.1rem"
+        }
+
         if (data.length >= 1) {
             console.log("if >= 1")
-
             const columns = [
                 { field: "id", headerName: "#", width: 10 },
-                { field: "tempo", headerName: "Tempo(ms)", width: 70 },
-                { field: "temperatura", headerName: "Temperatura(C)", width: 70 },
-                { field: "umidade", headerName: "Umidade(%)", width: 70 },
-                { field: "pressao", headerName: "Pressão(Pa)", width: 70 },
-                { field: "co2", headerName: "Co2(ppm)", width: 70 },
-                { field: "luminosidade", headerName: "Luminosidade(%)", width: 70 },
-                { field: "acelx", headerName: "AcelX(m/s²)", width: 70 },
-                { field: "acely", headerName: "AcelY(m/s²)", width: 70 },
-                { field: "acelz", headerName: "AcelZ(m/s²)", width: 70 },
-                { field: "girox", headerName: "GiroX(graus/s)", width: 70 },
-                { field: "giroy", headerName: "GiroY(graus/s)", width: 70 },
-                { field: "giroz", headerName: "GiroZ(graus/s)", width: 70 },
-                { field: "magx", headerName: "MagX(uT)", width: 70 },
-                { field: "magy", headerName: "MagY(uT)", width: 70 },
-                { field: "magz", headerName: "MagZ(uT)", width: 70 },
-                { field: "bateria", headerName: "Bateria(%)", width: 70 },
+                { field: "tempo", headerName: "Tempo(ms)", width: 110 },
+                { field: "temperatura", headerName: "Temperatura(C)", width: 140 },
+                { field: "umidade", headerName: "Umidade(%)", width: 115 },
+                { field: "pressao", headerName: "Pressão(Pa)", width: 115 },
+                { field: "co2", headerName: "Co2(ppm)", width: 100 },
+                { field: "luminosidade", headerName: "Luminosidade(%)", width: 150 },
+                { field: "acelx", headerName: "AcelX(m/s²)", width: 115 },
+                { field: "acely", headerName: "AcelY(m/s²)", width: 115 },
+                { field: "acelz", headerName: "AcelZ(m/s²)", width: 115 },
+                { field: "girox", headerName: "GiroX(graus/s)", width: 135 },
+                { field: "giroy", headerName: "GiroY(graus/s)", width: 135 },
+                { field: "giroz", headerName: "GiroZ(graus/s)", width: 135 },
+                { field: "magx", headerName: "MagX(uT)", width: 100 },
+                { field: "magy", headerName: "MagY(uT)", width: 100 },
+                { field: "magz", headerName: "MagZ(uT)", width: 100 },
+                { field: "bateria", headerName: "Bateria(%)", width: 100 },
             ]
 
             var rows = []
             let counter = 0;
 
             data.map(item => {
-                //console.log("map: "+item[1])
                 if (counter != 0 && counter != (data.length - 1)) {
                     rows.push(
                         {
@@ -69,22 +119,55 @@ class DataTable extends Component {
                 counter++;
             });
 
-            console.log("rows: "+rows[1].temperatura)
+            content =
 
-            content = 
+            <div>
 
-            <div style={{height: 700}}>
+                <div style={{"width": "100%", "overflow": "auto"}}>
+
+                    <div style={{"display": "flex", "width": "100%"}}>
+
+                        <div style={{"width": "65%"}}>
+                            <Typography style={DataTitleStyle}>{dataInfos.data_title}</Typography>
+                            <Typography style={DataIdStyle}><b>Data ID: </b>{dataUid}</Typography>
+                            <Typography style={DataDescStyle}><b>Data acquisition datetime: </b>{dataInfos.data_datetime}</Typography>
+                        </div>
+
+                        <div style={{"float": "right", "width": "35%"}}>
+
+                            <ThemeProvider theme={LoginButtonTheme}>
+                                <Button color="primary" variant="contained" style={ChartsButtonStyle}>Data Charts</Button>
+                            </ThemeProvider>
+
+                            <Typography style={ChartsDescStyle}>
+                                Na página 
+                                <Link style={{"cursor": "pointer", "textDecoration": "none", "color": "var(--white)"}} to="/datacharts">
+                                    <b style={{"fontSize": "0.8rem"}}> Data Charts </b> 
+                                </Link>
+                                você pode selecionar dados para processar em formato de gráficos.
+                            </Typography>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div style={{height: "90vh"}}>
 
                 <DataGrid 
                     rows={rows}
                     columns={columns}
-                    style={{"color": "white", "fontSize": "0.5rem"}}
+                    className={classes.root}
                 />
-                
+
+                </div>
+
             </div>
+
         }
         else {
-            content = <table></table>
+            content = <div></div>
         }
 
         return (
@@ -97,4 +180,8 @@ class DataTable extends Component {
 
 }
 
-export default DataTable;
+DataTable.propTypes = {
+    classes: PropTypes.object.isRequired,
+}
+
+export default withStyles(styles)(DataTable);

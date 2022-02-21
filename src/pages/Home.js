@@ -95,7 +95,6 @@ function Home() {
         fontSize: "4rem",
         marginTop: "1rem",
         cursor: "pointer",
-        
     }
 
     const SystemTitleStyle = {
@@ -164,12 +163,10 @@ function Home() {
                         
                     </div>
 
-                    <Container align="center">
+                    <Container maxwidth="lg" align="center" >
 
-                        <Container align="center">
-                            <img src={CubesatSollarium} className="cubesat-header-img"/>
-                        </Container>
-                            
+                        <img src={CubesatSollarium} className="cubesat-header-img"/>
+                        
                         <Typography variant="h2" style={LandingPageTitle}>CONHEÇA NOSSO CUBESAT</Typography>
                         <Typography variant="h2" style={LandingPageSubtitle}>Um projeto 100% brasileiro feito por estudantes</Typography>
 
@@ -185,7 +182,7 @@ function Home() {
 
                     <Container maxwidth="lg" align="center">
 
-                        <img src={CubesatSollarium} className="cubesat-header-img"/>
+                        <img src={CubesatSollarium} className="cubesat-header-img" style={{"width": "30rem"}}/>
 
                         <Grid container spacing={3} style={{"width": "95%", "marginLeft": "2.5%", "marginRight": "2.5%"}}>
 

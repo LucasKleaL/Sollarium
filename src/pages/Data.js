@@ -119,16 +119,17 @@ function Data() {
     async function sendNewRawData() {
 
         let dataDatetime = dataDate + " " + dataTime;
+        let dataId = "Sollarium-" + dataTitle + "-" +dataDate.replace(/[^A-Z0-9]/ig, "") + "-" + dataTime.replace(/[^A-Z0-9]/ig, "") + "h";
 
-        await Firebase.firestore().collection("rawdata")
-        .add({
+        await Firebase.firestore().collection("rawdata").doc(dataId)
+        .set({
             data_title: dataTitle,
             data_description: dataDesc,
             data_datetime: dataDatetime,
             data_user: dataUser
         })
         .then((docRef) => {
-            setNewRawDataFile(docRef.id);
+            setNewRawDataFile(dataId);
         })
 
     }
@@ -147,22 +148,20 @@ function Data() {
 
     }
 
-    function redirectToDataViewer(uid) {
+    function redirectToDataViewer( uid) {
         history.push({
             pathname: "/dataviewer",
-            dataUid: uid
+            locationUid: uid
         })
     }
 
     async function directFileDownload(uid) {
         await Firebase.storage().ref("rawdata").child(uid).getDownloadURL()
         .then((url) => {
-
             saveAs(
                 url,
                 uid
             )
-
         })
         .catch((error) => {
             alert("Error on file download. " + error)
@@ -326,7 +325,7 @@ function Data() {
             <header>
 
                 <div style={{"float": "right", "marginTop": "1.5rem"}}>
-                    <LogoutIcon fontSize="large" style={{"color": "white", "marginRight": "2rem", "cursor": "pointer"}} onClick={logout} />
+                    <LogoutIcon title="Logout" fontSize="large" style={{"color": "white", "marginRight": "2rem", "cursor": "pointer"}} onClick={logout} />
                 </div>  
                 
             </header>

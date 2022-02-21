@@ -1,9 +1,9 @@
 
 .sollarium-logo {
     width: 12rem;
-    margin-top: 2rem;
     margin-left: 1rem;
     float: left;
+    margin-top: 2rem;
 }
 
 .header-wallpaper {
@@ -15,12 +15,12 @@
 
 .cubesat-header-img {
     margin-top: 10rem;
-    width: 50%;
+    width: 30rem;
 }
 
 .div-section-1 {
     width: 100%;
-    height: 100vh;
+    overflow: auto;
 }
 
 .cubesat-system-icon {

@@ -2,37 +2,65 @@ import { React, useState, useEffect, useLayoutEffect, componentDidMount } from "
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Firebase from "../Firebase";
-import saveAs from "file-saver";
 
 import Papa from "papaparse";
-import { useTable } from "react-table";
 
-import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, } from "@material-ui/core";
-import LogoutIcon from '@mui/icons-material/Logout';
-import { render } from "react-dom";
+import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, ThemeProvider, } from "@material-ui/core";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import DataTable from "./../components/DataTable";
+import Sollarium from "./../public/sollarium_logo_escrita.png";
+
+import WhiteButton from "../themes/WhiteButtonTheme";
 
 function DataViewer() {
 
     const [data, setData] = useState([]);
     const [dataUrl, setDataUrl] = useState();
-    const { dataUid } = useLocation();
-    const uid = dataUid + ".csv";
+    const [dataUid, setDataUid] = useState();
+    const [dataInfos, setDataInfos] = useState([]);
+    
+    const { locationUid } = useLocation();
 
     useEffect(() => {
         //
     }, [])
 
     useLayoutEffect(() => {
-        getDataFromFirebase();
+
+        let rawUid;
+        let uid;
+
+        if (locationUid) {
+            rawUid = locationUid + ".csv";
+            uid = locationUid;
+            setDataUid(locationUid);
+            sessionStorage.setItem("dataUid", locationUid);
+        }
+        else {
+            rawUid = sessionStorage.getItem("dataUid") + ".csv";
+            uid = sessionStorage.getItem("dataUid");
+            setDataUid(sessionStorage.getItem("dataUid"));
+        }
+
+        getRawDataFromFirebase(rawUid);
+        getDataInfo(uid);
+
     }, [])
 
-    async function getDataFromFirebase() {
-        await Firebase.storage().ref("rawdata").child(uid).getDownloadURL()
+    async function getRawDataFromFirebase(rawUid) {
+        await Firebase.storage().ref("rawdata").child(rawUid).getDownloadURL()
         .then((url) => {
             setDataUrl(url);
             parseCsvToJson(url);
+        });
+    }
+
+    async function getDataInfo(uid) {
+        await Firebase.firestore().collection("rawdata").doc(uid).get()
+        .then((snapshot) => {
+            setDataInfos(snapshot.data());
+            console.log("getDataInfo: "+snapshot.data())
         });
     }
 
@@ -50,11 +78,42 @@ function DataViewer() {
         
     }
 
+    const HeaderButton = {
+        height: "3rem",
+        width: "8rem",
+        marginRight: "0.5rem",
+        fontSize: "2rem",
+        textTransform: "capitalize",
+        borderRadius: "10px",
+        border: "0",
+        fontWeight: "900"
+    }
+
     return (
-        <div style={{marginTop: "1rem", marginRight: "2rem", marginLeft: "2rem"}}>
+        <div style={{"width": "100%"}}>
+
+            <header>
+
+                <Link to="/">
+                    <img src={Sollarium} className="sollarium-logo" style={{"cursor": "pointer"}} />
+                </Link>
+
+                <div style={{"float": "right", "marginTop": "1.5rem"}}>
+                    <Link to="/data" style={{"color": "var(--white)", "textDecoration": "none"}}>
+                        <ThemeProvider theme={WhiteButton}>
+                            <Button color="primary" variant="outlined" style={HeaderButton}><ArrowBackIcon /> Data</Button>
+                        </ThemeProvider>
+                    </Link>
+                </div>
+
+            </header>
+
             <Container maxwidth="lg" align="center">
-                <DataTable data={data} />
+
+                <DataTable style={{marginTop: "1rem"}} data={data} dataUid={dataUid} dataInfos={dataInfos} />
+
             </Container>
+
         </div>
     )
 
