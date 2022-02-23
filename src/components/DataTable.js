@@ -1,4 +1,5 @@
 import { React, Component } from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
 import { withStyles } from "@material-ui/styles";
@@ -20,8 +21,6 @@ class DataTable extends Component {
     constructor(props) {
         super(props);
     }
-
-
 
     render() {
 
@@ -136,7 +135,9 @@ class DataTable extends Component {
                         <div style={{"float": "right", "width": "35%"}}>
 
                             <ThemeProvider theme={LoginButtonTheme}>
-                                <Button color="primary" variant="contained" style={ChartsButtonStyle}>Data Charts</Button>
+                                <Link style={{"cursor": "pointer", "textDecoration": "none", "color": "var(--white)"}} to="/datacharts">
+                                    <Button color="primary" variant="contained" style={ChartsButtonStyle}>Data Charts</Button>
+                                </Link>
                             </ThemeProvider>
 
                             <Typography style={ChartsDescStyle}>
@@ -153,7 +154,7 @@ class DataTable extends Component {
 
                 </div>
 
-                <div style={{height: "90vh"}}>
+                <div style={{height: "85vh"}}>
 
                 <DataGrid 
                     rows={rows}
