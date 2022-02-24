@@ -10895,7 +10895,7 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-roboto@^4.5.3:
+roboto@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/roboto/-/roboto-0.8.2.tgz#41855a7f43e931afefda5927c5854e3e9339f94b"
   integrity sha1-QYVaf0PpMa/v2lknxYVOPpM5+Us=
