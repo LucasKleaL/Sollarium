@@ -274,6 +274,9 @@ class DataChart extends Component {
                         },
                     ],
                 },
+                responsive: true,
+                maintainAspectRatio: true,
+
             };
 
             content =
@@ -294,10 +297,12 @@ class DataChart extends Component {
 
                 </div>
 
-                <div style={{height: "85vh"}}>
+                <div>
 
-                    <Line data={chartData} options={options} />
-
+                    <Container style={{height: "100%"}} maxwidth="lg" align="center">
+                        <Line data={chartData} options={options} />
+                    </Container>
+                    
                 </div>
 
             </div>

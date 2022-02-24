@@ -109,7 +109,7 @@ function DataViewer() {
 
             </header>
 
-            <Container maxwidth="lg" align="center">
+            <Container maxwidth="lg" align="center" style={{"height": "100vh"}}>
 
                 <LineChart data={data} dataUid={dataUid} dataInfos={dataInfos} />
 
