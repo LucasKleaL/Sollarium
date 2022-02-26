@@ -1,8 +1,7 @@
 import { React, Component } from "react";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
-import { Button, Container, Typography, Modal } from "@material-ui/core";
+import { Button, Container, Typography } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 import { Line } from "react-chartjs-2";
@@ -15,11 +14,7 @@ import {
     Title,
     Tooltip,
     Legend,
-  } from 'chart.js';
-
-import LineChart from "./LineChart";
-
-import LoginButtonTheme from "../themes/LoginButtonTheme";
+} from 'chart.js';
 
 class DataChart extends Component {
 
@@ -38,6 +33,8 @@ class DataChart extends Component {
             Tooltip,
             Legend
         );
+
+        ChartJS.defaults.color = "#F8F8F8";
 
         const data = this.props.data;
         const dataUid = this.props.dataUid;
@@ -62,22 +59,6 @@ class DataChart extends Component {
             fontSize: "1rem",
             color: "var(--white)",
             textAlign: "left"
-        }
-
-        const ChartsButtonStyle = {
-            width: "8rem",
-            height: "3rem",
-            textTransform: "capitalize",
-            fontWeigth: "bold",
-            float: "left"
-        }
-
-        const ChartsDescStyle = {
-            fontSize: "0.8rem",
-            color: "var(--white)",
-            float: "right",
-            textAlign: "left",
-            marginTop: "0.1rem"
         }
 
         if (data.length >= 1) {
@@ -275,7 +256,7 @@ class DataChart extends Component {
                     ],
                 },
                 responsive: true,
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
 
             };
 
@@ -287,7 +268,7 @@ class DataChart extends Component {
 
                     <div style={{"display": "flex", "width": "100%"}}>
 
-                        <div style={{"width": "65%"}}>
+                        <div style={{"width": "100%"}}>
                             <Typography style={DataTitleStyle}>{dataInfos.data_title}</Typography>
                             <Typography style={DataIdStyle}><b>Data ID: </b>{dataUid}</Typography>
                             <Typography style={DataDescStyle}><b>Data acquisition datetime: </b>{dataInfos.data_datetime}</Typography>
@@ -297,10 +278,12 @@ class DataChart extends Component {
 
                 </div>
 
-                <div>
+                <div style={{"width": "100%"}}>
 
-                    <Container style={{height: "100%"}} maxwidth="lg" align="center">
-                        <Line data={chartData} options={options} />
+                    <Container style={{height: "95vh"}} maxwidth="lg" align="center">
+                        <div className="canvas-container" style={{height: "85vh", width: "100%"}}>
+                            <Line data={chartData} options={options} />
+                        </div>
                     </Container>
                     
                 </div>

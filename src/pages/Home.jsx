@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import Firebase from "./../Firebase";
+import Firebase from "../Firebase";
 
 import { Button, Container, Typography, Grid } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -72,7 +72,8 @@ function Home() {
         textTransform: "capitalize",
         borderRadius: "10px",
         border: "0",
-        fontWeight: "900"
+        fontWeight: "900",
+        color: "var(--white)",
     }
 
     const LandingPageTitle = {

@@ -1,14 +1,14 @@
-import { React, useState, useEffect, useLayoutEffect, componentDidMount } from "react";
-import { useHistory, useLocation } from "react-router";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import Firebase from "../Firebase";
 
 import Papa from "papaparse";
 
-import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, ThemeProvider, } from "@material-ui/core";
+import { Button, Container, ThemeProvider, } from "@material-ui/core";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-import DataTable from "./../components/DataTable";
+import LineChart from "../components/LineChart";
+
 import Sollarium from "./../public/sollarium_logo_escrita.png";
 
 import WhiteButton from "../themes/WhiteButtonTheme";
@@ -19,14 +19,14 @@ function DataViewer() {
     const [dataUrl, setDataUrl] = useState();
     const [dataUid, setDataUid] = useState();
     const [dataInfos, setDataInfos] = useState([]);
-    
-    const { locationUid } = useLocation();
 
     useEffect(() => {
         //
     }, [])
 
     useLayoutEffect(() => {
+
+        let locationUid = sessionStorage.getItem("dataUid");
 
         let rawUid;
         let uid;
@@ -86,7 +86,8 @@ function DataViewer() {
         textTransform: "capitalize",
         borderRadius: "10px",
         border: "0",
-        fontWeight: "900"
+        fontWeight: "900",
+        color: "var(--white)",
     }
 
     return (
@@ -108,9 +109,9 @@ function DataViewer() {
 
             </header>
 
-            <Container maxwidth="lg" align="center">
+            <Container maxwidth="lg" align="center" style={{"height": "100vh"}}>
 
-                <DataTable style={{marginTop: "1rem"}} data={data} dataUid={dataUid} dataInfos={dataInfos} />
+                <LineChart data={data} dataUid={dataUid} dataInfos={dataInfos} />
 
             </Container>
 

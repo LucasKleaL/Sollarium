@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useLayoutEffect } from "react";
 import { useHistory } from "react-router";
-import Firebase from "./../Firebase";
+import Firebase from "../Firebase";
 import crypto from "crypto";
 
 import 
