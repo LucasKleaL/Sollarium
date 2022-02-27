@@ -9,8 +9,8 @@ import
 } 
 from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
-import LogoutIcon from '@mui/icons-material/Logout';
 
+import HeaderButton from "../components/HeaderButton";
 import LoginButtonTheme from "../themes/LoginButtonTheme";
 
 function Register() {
@@ -225,10 +225,6 @@ function Register() {
         }
     }
 
-    function backButton() {
-        history.push("/data");
-    }
-
     const RegisterBoxStyle = {
         width: "30rem",
         backgroundColor: "var(--white-background)",
@@ -275,7 +271,7 @@ function Register() {
 
                 <header>
                     <div style={{"float": "right", "marginTop": "1.5rem"}}>
-                        <LogoutIcon fontSize="large" style={{"color": "white", "marginRight": "2rem", "cursor": "pointer"}} onClick={backButton} />
+                        <HeaderButton text="Home" url="/" icon="backarrow"/>
                     </div>
                 </header>
             

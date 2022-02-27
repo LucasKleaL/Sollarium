@@ -1,17 +1,14 @@
 import { React, useState, useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
-import Firebase from "../Firebase";
 
+import Firebase from "../Firebase";
 import Papa from "papaparse";
 
-import { Button, Container, ThemeProvider, } from "@material-ui/core";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Container } from "@material-ui/core";
 
 import LineChart from "../components/LineChart";
-
+import HeaderButton from "./../components/HeaderButton";
 import Sollarium from "./../public/sollarium_logo_escrita.png";
-
-import WhiteButton from "../themes/WhiteButtonTheme";
 
 function DataViewer() {
 
@@ -78,18 +75,6 @@ function DataViewer() {
         
     }
 
-    const HeaderButton = {
-        height: "3rem",
-        width: "8rem",
-        marginRight: "0.5rem",
-        fontSize: "2rem",
-        textTransform: "capitalize",
-        borderRadius: "10px",
-        border: "0",
-        fontWeight: "900",
-        color: "var(--white)",
-    }
-
     return (
         <div style={{"width": "100%"}}>
 
@@ -100,11 +85,7 @@ function DataViewer() {
                 </Link>
 
                 <div style={{"float": "right", "marginTop": "1.5rem"}}>
-                    <Link to="/data" style={{"color": "var(--white)", "textDecoration": "none"}}>
-                        <ThemeProvider theme={WhiteButton}>
-                            <Button color="primary" variant="outlined" style={HeaderButton}><ArrowBackIcon /> Data</Button>
-                        </ThemeProvider>
-                    </Link>
+                    <HeaderButton text=" Data" url="/data" icon="backarrow" />
                 </div>
 
             </header>
@@ -117,8 +98,6 @@ function DataViewer() {
 
         </div>
     )
-
-
 
 }
 

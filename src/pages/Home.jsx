@@ -47,17 +47,17 @@ function Home() {
     ]
 
     const systemDescriptions = [
-        "O sensor de pressão mede a pressão atmósferica local, muito útil para se situar na atmosfera terreste e analisar a composição atmosférica local.",
+        "O sensor de pressão mede a pressão atmósferica local, muito útil para se situar na atmosfera terreste e analisar o comportamento dos gases no local.",
         "O sensor de CO2, mede a quantidade de dióxido de carbono que está interagindo com o sensor. O monitoramento deste gás é crucial para realizar análises da atmosfera local e monitoramento de poluição.",
-        "O sensor de temperatura mede a temperatura ambiente ao redor do sensor. Este sensor é o mesmo que faz medições de umidade, um sensor DHT11.",
-        "O sensor de umidade mede a quantidade de umidade no ar que está interagindo com o sensor. Este sensor é o mesmo que faz as medições de temperatura, um sensor DHT11.",
+        "O sensor de temperatura mede a temperatura ambiente ao redor. Este sensor é o mesmo que faz medições de umidade, um DHT11.",
+        "O sensor de umidade mede a quantidade de umidade no ar em porcentagem. Este sensor é o mesmo que faz as medições de temperatura, um DHT11.",
         "O magnetômetro é o sensor crucial para nossa missão principal. Com ele é possível fazer medições sobre a influência do campo magnético que está interagindo com o sensor.",
-        "O computador embarcado, é a unidade responsável porcontrolar todos os outros subsistemas do satélite. É com ele que gerenciamos as interações entre o software e hardware do sistema. Nosso computador de bordo é composto por um ESP32embutido em uma placa feita pela PION Labs.",
-        "O subsistema de comunicação envolve o hardware e software responsável por transmitir as informações obtidas a partir dos sensores. Ainda não definimos o hardware a ser utilizado para nossa missão, mas provavelmente utilizaremos frequências de rádio UHF para as transmissões de dados e telemetria.",
-        "O subsistema de energia é reponsável por gerenciar, gerar, e distribuir a energia para todos os demais subsistemas do satélite. No momento utilizamos uma bateria da PION que acompanha o cubesat e é carregada via USB. Para uma missão real pretendemos aumentar a capacidade energética e utilizar paineis fotovoltaicos para obtenção de energia.",
+        "O computador embarcado, é a unidade responsável por controlar todos os outros subsistemas do satélite. É com ele que gerenciamos as interações entre o software e hardware do sistema. Nosso computador de bordo é composto por um ESP32 embutido em uma placa feita pela PION Labs.",
+        "O subsistema de comunicação envolve o hardware e software responsável por transmitir as informações obtidas a partir dos sensores. Para esta fase da missão iremos utilizar requisições HTTP via wifi transmitindo os dados e telemetria formatados em JSON.",
+        "O subsistema de energia é reponsável por gerenciar, gerar, e distribuir a energia para todos os demais subsistemas do satélite. No momento utilizamos uma pequena bateria de 400mah que acompanha o cubesat e é carregada via USB. Para uma missão real pretendemos aumentar a capacidade energética e utilizar paineis fotovoltaicos para obtenção de energia.",
         "O sensor de luminosidade é essencial para a orientação do cubesat no espaço, com ele conseguimos obter a direção em que os raios solares estão atingindo o cubesat, podendo ser utilizado para guiar a captação de energia dos paineis solares. Além do mais, com ele é possível realizar experimentos envolvendo luz UV.",
         "O giroscópio é o sensor responsável de coletar dados sobre a movimentação do cubesat, com ele é possível obter dados da rotação nos eixos X, Y e Z. Os dados deste sensor são essencias para a telemetria e controle de atitude.",
-        "O acelerômetro, assim como o giroscópio, capta dados sobre o movimento nos eixos X, Y e Z. Porém o acelerômetro é especializado em captar medidas de quanto o cubesat está sendo impulsionado em determinada direção."
+        "O acelerômetro, assim como o giroscópio, capta dados sobre o movimento nos eixos X, Y e Z. Porém o acelerômetro é especializado em captar medidas do quanto o cubesat está sendo impulsionado em determinada direção."
     ]
 
     const [hover, setHover] = useState(false);

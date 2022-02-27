@@ -1,17 +1,16 @@
-import { React, useState, useEffect, useLayoutEffect, componentDidMount } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Firebase from "../Firebase";
 
 import Papa from "papaparse";
 
-import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, ThemeProvider, } from "@material-ui/core";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Container } from "@material-ui/core";
 
 import DataTable from "../components/DataTable";
+import HeaderButton from "../components/HeaderButton";
 import Sollarium from "./../public/sollarium_logo_escrita.png";
 
-import WhiteButton from "../themes/WhiteButtonTheme";
 
 function DataViewer() {
 
@@ -78,18 +77,6 @@ function DataViewer() {
         
     }
 
-    const HeaderButton = {
-        height: "3rem",
-        width: "8rem",
-        marginRight: "0.5rem",
-        fontSize: "2rem",
-        textTransform: "capitalize",
-        borderRadius: "10px",
-        border: "0",
-        fontWeight: "900",
-        color: "var(--white)",
-    }
-
     return (
         <div style={{"width": "100%"}}>
 
@@ -100,19 +87,13 @@ function DataViewer() {
                 </Link>
 
                 <div style={{"float": "right", "marginTop": "1.5rem"}}>
-                    <Link to="/data" style={{"color": "var(--white)", "textDecoration": "none"}}>
-                        <ThemeProvider theme={WhiteButton}>
-                            <Button color="primary" variant="outlined" style={HeaderButton}><ArrowBackIcon /> Data</Button>
-                        </ThemeProvider>
-                    </Link>
+                    <HeaderButton text=" Data" url="/data" icon="backarrow" />
                 </div>
 
             </header>
 
             <Container maxwidth="lg" align="center">
-
                 <DataTable style={{marginTop: "1rem"}} data={data} dataUid={dataUid} dataInfos={dataInfos} />
-
             </Container>
 
         </div>

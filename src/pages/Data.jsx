@@ -8,7 +8,6 @@ import saveAs from "file-saver";
 import { Button, Container, Typography, Modal, TextField, Box, Grid, RadioGroup, Radio, FormControlLabel, } from "@material-ui/core";
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddIcon from '@mui/icons-material/Add';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ThemeProvider } from "@material-ui/core/styles";
 
 import "./../styles/data.css";
@@ -16,7 +15,8 @@ import "./../styles/data.css";
 import LoginButtonTheme from "../themes/LoginButtonTheme";
 import WhiteButtonTheme from "../themes/WhiteButtonTheme";
 
-import BackHeaderButton from "../components/BackHeaderButton";
+import HeaderButton from "../components/HeaderButton";
+import Sollarium from "./../public/sollarium_logo_escrita.png";
 
 function Data() {
 
@@ -327,14 +327,16 @@ function Data() {
 
             <header>
 
+                <Link to="/">
+                    <img src={Sollarium} className="sollarium-logo" style={{"cursor": "pointer"}} />
+                </Link>
+
                 <div style={{"float": "right", "marginTop": "1.5rem"}}>
                     <LogoutIcon title="Logout" fontSize="large" style={{"color": "white", "marginTop": "0.4rem", "marginRight": "2rem", "cursor": "pointer"}} onClick={logout} />
                 </div>  
 
                 <div style={{"float": "right", "marginTop": "1.5rem"}}>
-                    <Link to="/" style={{"color": "var(--white)", "textDecoration": "none", "cursor": "pointer"}}>
-                    
-                    </Link>
+                    <HeaderButton text=" Home" url="/" icon="backarrow" />
                 </div>
                 
             </header>
