@@ -23,7 +23,20 @@
     overflow: auto;
 }
 
+.div-section-2 {
+    margin-top: 2rem;
+    width: 100%;
+    overflow: auto;
+}
+
 .cubesat-system-icon {
     width: 5rem;
     cursor: pointer;
+}
+
+.div-body-text {
+    border: 0;
+    border-top: 1px;
+    border-color: var(--white);
+    border-style: solid;
 }
