@@ -5,6 +5,7 @@ import Data from "./pages/Data";
 import Register from "./pages/Register";
 import DataViewer from "./pages/DataViewer";
 import DataCharts from "./pages/DataChats";
+import About from "./pages/About";
 
 const Routes = () => {
 
@@ -15,6 +16,7 @@ const Routes = () => {
             <Route exact={true} path="/signup" component={Register} />
             <Route exact={true} path="/dataviewer" component={DataViewer} />
             <Route exact={true} path="/datacharts" component={DataCharts} />
+            <Route exact={true} path="/about" component={About} />
         </BrowserRouter>
     )
 

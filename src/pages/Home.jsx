@@ -26,6 +26,10 @@ import WhiteButton from "../themes/WhiteButtonTheme";
 
 import Sollarium from "./../public/sollarium_logo_escrita.png";
 import CubesatSollarium from "./../public/img/cubesat_sollarium_1_transparente_512_small.png";
+import ObsatLogo from "./../public/img/obsat_logo.png";
+import SollariumLogo from "./../public/img/sollarium_logo_512.png";
+import VercelLogo from "./../public/img/vercel_logo.png";
+import FirebaseLogo from "./../public/img/firebase_logo.png";
 import "./../styles/home.css";
 
 function Home() {
@@ -118,7 +122,7 @@ function Home() {
         fontSize: "1.5rem",
         fontWeight: "bold",
         marginTop: "2rem",
-        marginLeft: "3rem"
+        marginLeft: "2rem"
     }
 
     const FooterLinkStyle = {
@@ -126,7 +130,7 @@ function Home() {
         fontSize: "1rem",
         fontWeight: "bold",
         marginTop: "0.5rem",
-        marginLeft: "3rem",
+        marginLeft: "2rem",
         textDecoration: "underline",
         cursor: "pointer"
     }
@@ -134,7 +138,7 @@ function Home() {
     const FooterIcon = {
         color: "var(--gray-tag)",
         fontSize: "3rem",
-        marginLeft: "2.7rem",
+        marginLeft: "2rem",
         marginTop: "0.2rem",
         cursor: "pointer"
     }
@@ -161,6 +165,10 @@ function Home() {
         cursor: "pointer"
     }
 
+    const BodyImgStyle = {
+        width: "15rem",
+    }
+
     return (
 
         <div>
@@ -173,9 +181,11 @@ function Home() {
                     
                     <div style={{"float": "right", "marginTop": "1.5rem"}}>
 
-                        <ThemeProvider theme={WhiteButton}>
-                            <Button color="primary" variant="outlined" style={HeaderButton}>About</Button>
-                        </ThemeProvider>
+                        <Link to="/about" style={{"textDecoration": "none"}}>
+                            <ThemeProvider theme={WhiteButton}>
+                                <Button color="primary" variant="outlined" style={HeaderButton}>About</Button>
+                            </ThemeProvider>
+                        </Link>
 
                         <Link to="/data" style={{"textDecoration": "none"}}>
                             <ThemeProvider theme={WhiteButton}>
@@ -269,6 +279,11 @@ function Home() {
 
                     </div>
 
+                    <div style={{marginTop: "3rem"}}>
+                        <img style={BodyImgStyle} src={ObsatLogo} alt="Logo da OBSAT" title="OBSAT" />
+                        <img style={BodyImgStyle} src={SollariumLogo} alt="Logo da Sollarium" title="Sollarium" />    
+                    </div>
+
                 </Container>
 
             </div>
@@ -283,6 +298,18 @@ function Home() {
                 <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
                     <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Acompanhe nossa rede social</Typography>
                     <InstagramIcon style={FooterIcon} onClick={() => window.location.href = "https://www.instagram.com/sollarium.cubesat/"} target="_blank" />
+                </div>
+
+                <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
+                    <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Powered by</Typography>
+                    <div style={{marginLeft: "2rem", marginTop: "0.6rem", display: "flex"}}>
+                        <a href="https://vercel.com/" target="_blank" style={{cursor: "pointer"}} >
+                            <img style={{width: "9rem"}} src={VercelLogo} alt="Vercel" title="Vercel" />
+                        </a>
+                        <a href="https://firebase.google.com/" target="_blank" style={{cursor: "pointer"}}>
+                            <img style={{width: "9rem"}} src={FirebaseLogo} alt="Firebase" title="Firebase" />
+                        </a>
+                    </div>
                 </div>
 
             </footer>
