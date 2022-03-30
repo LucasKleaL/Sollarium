@@ -290,27 +290,33 @@ function Home() {
 
             <footer>
 
-                <div style={{"width": "20rem", "height": "80%", "marginTop": "1rem",}}>
-                    <Typography style={FooterTextStyle}>2021 Sollarium</Typography>
-                    <Typography style={FooterLinkStyle} onClick={() => window.location = "mailto:sollarium.org@gmail.com"}>sollarium.org@gmail.com</Typography>
-                </div>
-
-                <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
-                    <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Acompanhe nossa rede social</Typography>
-                    <InstagramIcon style={FooterIcon} onClick={() => window.location.href = "https://www.instagram.com/sollarium.cubesat/"} target="_blank" />
-                </div>
-
-                <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
-                    <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Powered by</Typography>
-                    <div style={{marginLeft: "2rem", marginTop: "0.6rem", display: "flex"}}>
-                        <a href="https://vercel.com/" target="_blank" style={{cursor: "pointer"}} >
-                            <img style={{width: "9rem"}} src={VercelLogo} alt="Vercel" title="Vercel" />
-                        </a>
-                        <a href="https://firebase.google.com/" target="_blank" style={{cursor: "pointer"}}>
-                            <img style={{width: "9rem"}} src={FirebaseLogo} alt="Firebase" title="Firebase" />
-                        </a>
-                    </div>
-                </div>
+                <Grid container spacing={3} style={{ "width": "95%", "marginLeft": "2.5%", "marginRight": "2.5%", "paddingTop": "0.1rem", "paddingBottom": "1rem" }}>
+                    <Grid item>
+                        <div style={{"width": "20rem", "height": "80%", "marginTop": "1rem",}}>
+                        <Typography style={FooterTextStyle}>2021 Sollarium</Typography>
+                        <Typography style={FooterLinkStyle} onClick={() => window.location = "mailto:sollarium.org@gmail.com"}>sollarium.org@gmail.com</Typography>
+                        </div>
+                    </Grid>
+                    <Grid item>
+                        <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
+                        <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Acompanhe nossa rede social</Typography>
+                        <InstagramIcon style={FooterIcon} onClick={() => window.location.href = "https://www.instagram.com/sollarium.cubesat/"} target="_blank" />
+                        </div>
+                    </Grid>
+                    <Grid item>
+                        <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
+                        <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Powered by</Typography>
+                        <div style={{marginLeft: "2rem", marginTop: "0.6rem", display: "flex"}}>
+                            <a href="https://vercel.com/" target="_blank" style={{cursor: "pointer"}} >
+                                <img style={{width: "9rem"}} src={VercelLogo} alt="Vercel" title="Vercel" />
+                            </a>
+                            <a href="https://firebase.google.com/" target="_blank" style={{cursor: "pointer"}}>
+                                <img style={{width: "9rem"}} src={FirebaseLogo} alt="Firebase" title="Firebase" />
+                            </a>
+                        </div>
+                        </div>
+                    </Grid>
+                </Grid>
 
             </footer>
 

@@ -36,9 +36,7 @@ header {
 
 footer {
     width: 100%;
-    height: 10rem;
     background-color: black;
-    overflow: auto;
     margin-top: 8rem;
     display: flex;
 }
