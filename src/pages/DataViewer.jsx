@@ -65,9 +65,13 @@ function DataViewer() {
 
     async function parseCsvToJson(url) {
 
+        let currentUrl = window.location.host;
+        console.log(currentUrl);
+
         let file = await fetch(url, {
             headers: {
-                "Origin": "https://sollarium.vercel.app/"
+                //"Origin": "https://sollarium.vercel.app/"
+                "Origin": "https://"+currentUrl
             }
         }).then(e => e.blob());
         
