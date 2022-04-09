@@ -1,12 +1,11 @@
-import { React, useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { React, useState } from "react";
+//import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import Firebase from "../Firebase";
 
 import { Button, Container, Typography, Grid } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-import { ArrowDownwardIcon } from '@mui/icons-material/ArrowDownward';
+//import { ArrowDownwardIcon } from '@mui/icons-material/ArrowDownward';
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
@@ -34,7 +33,7 @@ import "./../styles/home.css";
 
 function Home() {
 
-    var history = useHistory();
+    //var history = useHistory();
 
     const systemTitles = [
         "SENSOR DE PRESSÃO",
@@ -177,7 +176,7 @@ function Home() {
 
                 <header>
                     
-                    <img src={Sollarium} className="sollarium-logo" />
+                    <img src={Sollarium} className="sollarium-logo" alt="Sollarium logo" />
                     
                     <div style={{"float": "right", "marginTop": "1.5rem"}}>
 
@@ -197,7 +196,7 @@ function Home() {
 
                     <Container maxwidth="lg" align="center" >
 
-                        <img src={CubesatSollarium} className="cubesat-header-img"/>
+                        <img src={CubesatSollarium} className="cubesat-header-img" alt="Cubesat Sollarium" />
                         
                         <Typography variant="h2" style={LandingPageTitle}>CONHEÇA NOSSO CUBESAT</Typography>
                         <Typography variant="h2" style={LandingPageSubtitle}>Um projeto 100% brasileiro feito por estudantes</Typography>
@@ -214,21 +213,21 @@ function Home() {
 
                 <Container maxwidth="lg" align="center">
 
-                    <img src={CubesatSollarium} className="cubesat-header-img" style={{ "width": "30rem" }} />
+                    <img src={CubesatSollarium} className="cubesat-header-img" style={{ "width": "30rem" }} alt="Cubesat Sollarium" />
 
                     <Grid container spacing={3} style={{ "width": "95%", "marginLeft": "2.5%", "marginRight": "2.5%" }}>
 
-                        <Grid item><img className="cubesat-system-icon" src={PressureIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[0]); setActualSystemDesc(systemDescriptions[0]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={Co2Icon} onMouseEnter={() => { setActualSystemTitle(systemTitles[1]); setActualSystemDesc(systemDescriptions[1]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={TemperatureIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[2]); setActualSystemDesc(systemDescriptions[2]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={HumidityIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[3]); setActualSystemDesc(systemDescriptions[3]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={MagnetometerIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[4]); setActualSystemDesc(systemDescriptions[4]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={CpuIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[5]); setActualSystemDesc(systemDescriptions[5]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={CommunicationIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[6]); setActualSystemDesc(systemDescriptions[6]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={EnergyIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[7]); setActualSystemDesc(systemDescriptions[7]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={LuminositIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[8]); setActualSystemDesc(systemDescriptions[8]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={GiroscopeIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[9]); setActualSystemDesc(systemDescriptions[9]) }} /></Grid>
-                        <Grid item><img className="cubesat-system-icon" src={AcelerometerIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[10]); setActualSystemDesc(systemDescriptions[10]) }} /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={PressureIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[0]); setActualSystemDesc(systemDescriptions[0]) }} alt="Pressure Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={Co2Icon} onMouseEnter={() => { setActualSystemTitle(systemTitles[1]); setActualSystemDesc(systemDescriptions[1]) }} alt="CO2 Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={TemperatureIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[2]); setActualSystemDesc(systemDescriptions[2]) }} alt="Temperature Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={HumidityIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[3]); setActualSystemDesc(systemDescriptions[3]) }} alt="Humidity Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={MagnetometerIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[4]); setActualSystemDesc(systemDescriptions[4]) }} alt="Magnetometer Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={CpuIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[5]); setActualSystemDesc(systemDescriptions[5]) }} alt="CPU Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={CommunicationIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[6]); setActualSystemDesc(systemDescriptions[6]) }} alt="Communication Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={EnergyIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[7]); setActualSystemDesc(systemDescriptions[7]) }} alt="Energy Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={LuminositIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[8]); setActualSystemDesc(systemDescriptions[8]) }} alt="Luminosity Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={GiroscopeIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[9]); setActualSystemDesc(systemDescriptions[9]) }} alt="Giroscope Icon" /></Grid>
+                        <Grid item><img className="cubesat-system-icon" src={AcelerometerIcon} onMouseEnter={() => { setActualSystemTitle(systemTitles[10]); setActualSystemDesc(systemDescriptions[10]) }} alt="Acelerometer Icon" /></Grid>
 
                     </Grid>
 
@@ -257,7 +256,7 @@ function Home() {
                         <Typography style={BodyTextStyle}>
                             Esta anomalia ocorre sobre boa parte do território brasileiro, sendo que outros cubesats já foram lançados visando 
                             estudá-la, como é o caso 
-                            do <a style={BodyLinkSytle} href="http://www.inpe.br/sul/nanosat/" target="_blank">NanoSatC-BR1</a> que
+                            do <a style={BodyLinkSytle} href="http://www.inpe.br/sul/nanosat/" target="_blank" rel="noreferrer">NanoSatC-BR1</a> que
                             já está a mais de 7 anos operando e transmitindo dados a partir de uma órbita terrestre baixa, 
                             tendo como parte de sua missão principal monitorar a AMAS.
                         </Typography>
@@ -267,7 +266,7 @@ function Home() {
                             Desde seu início o projeto Sollarium foi concebido para a 1ª Olimpíada Brasileira de Satélites (OBSAT).
                             Nossos objetivos são alinhados com o cumprimento das metas estabelecidas nos editais da competição divulgados em cada fase. 
                             Para mais informações sobre a OBSAT acesse 
-                            seu <a style={BodyLinkSytle} href="https://obsat.org.br/" target="_blank" >website</a>.
+                            seu <a style={BodyLinkSytle} href="https://obsat.org.br/" target="_blank" rel="noreferrer">website</a>.
                         </Typography>
 
                         <Typography style={BodyTitleStyle}>Sobre a equipe</Typography>
@@ -307,10 +306,10 @@ function Home() {
                         <div style={{"borderLeft": "2px solid var(--gray-tag)", "height": "80%", "marginTop": "1rem", "float": "left", "width": "20rem"}}>
                         <Typography style={{...FooterTextStyle,...{"fontSize": "1.2rem"}}}>Powered by</Typography>
                         <div style={{marginLeft: "2rem", marginTop: "0.6rem", display: "flex"}}>
-                            <a href="https://vercel.com/" target="_blank" style={{cursor: "pointer"}} >
+                            <a href="https://vercel.com/" target="_blank" rel="noreferrer" style={{cursor: "pointer"}} >
                                 <img style={{width: "9rem"}} src={VercelLogo} alt="Vercel" title="Vercel" />
                             </a>
-                            <a href="https://firebase.google.com/" target="_blank" style={{cursor: "pointer"}}>
+                            <a href="https://firebase.google.com/" target="_blank" rel="noreferrer" style={{cursor: "pointer"}}>
                                 <img style={{width: "9rem"}} src={FirebaseLogo} alt="Firebase" title="Firebase" />
                             </a>
                         </div>

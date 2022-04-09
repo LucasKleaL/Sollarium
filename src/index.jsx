@@ -4,8 +4,7 @@ import Routes from './Routes';
 import './styles/global.css';
 
 ReactDOM.render(
-  <React.StrictMode>
     <Routes />
-  </React.StrictMode>,
+  ,
   document.getElementById('root')
 );
