@@ -54,6 +54,16 @@ function Register() {
     const [invalidPassword, setInvalidPassword] = useState("");
     const [invalidRetryPassword, setInvalidRetryPassword] = useState("");
 
+    //terms modal variables
+    const [open, setOpen] = useState("");
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+    const handleClose = () => {
+        setOpen(false);
+    }
+
     function signup() {
         
         if (terms && isEmail && isUsername && isCompleteName && isBirthdayDate && isCountry && isState && isCity && isOccupation && isPassword && isRetryPassword) {
@@ -262,6 +272,12 @@ function Register() {
         marginTop: "1rem",
         textTransform: "capitalize",
     }
+
+    const ModalBoxStyle = {
+        width: "30rem",
+        backgroundColor: "var(--white-background)",
+        borderRadius: "10px"
+    }
     
     return (
 
@@ -274,6 +290,23 @@ function Register() {
                         <HeaderButton text="Home" url="/" icon="backarrow"/>
                     </div>
                 </header>
+
+                <Modal open={open} onClose={handleClose} style={{"marginTop": "10%"}}>
+
+                    <Container align="center" maxwidth="lg" style={{"border": "none"}}>
+                        <Box style={ModalBoxStyle}>
+
+                            <Typography variant="h3">Termos e condições do cadastro Sollarium</Typography>
+                            <Typography variant="p">
+                                Ao se cadastrar na plataforma web do projeto Sollarium, você está concordando com os 
+                                seguintes termos:
+                            </Typography>
+                            <Typograpgy ></Typograpgy>
+
+                        </Box>
+                    </Container>
+
+                </Modal>
             
                 <Box style={RegisterBoxStyle}>
 
@@ -593,10 +626,9 @@ function Register() {
 
                     <div>
                         <Checkbox id="terms" defaultChecked={false} onChange={ () => handleTermsCheckbox() } />
-                        <Typography variant="p" style={{"paddingTop": "0.1rem"}}>Concordo com os <b>Termos e condições.</b></Typography>
+                        <Typography variant="p" style={{paddingTop: "0.1rem", cursor: "pointer"}} onClick={handleOpen}>Concordo com os <b>Termos e condições.</b></Typography>
                     </div>
                     
-
                     <div style={{"paddingBottom": "2rem"}}>
                         <ThemeProvider theme={LoginButtonTheme}>
                             <Button color="primary" variant="contained" style={SignupButtonStyle} onClick={signup}>Signup</Button>
